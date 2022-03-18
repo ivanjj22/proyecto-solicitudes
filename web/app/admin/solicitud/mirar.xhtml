@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{SolicitudLabels.SolicitudTitulo}" url="#"/>
+                        <p:menuitem value="#{SolicitudLabels.Solicituddetalles}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+                    
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{SolicitudLabels.Solicituddetalle}"/>
+                        </f:facet>
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxtCodsolicitud}" for="codsolicitud"/>
+                        <p:outputLabel id="codsolicitud" value="#{solicitudesController.selected.codsolicitud}"/>
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxtcodequipo}" for="codequipo"/>
+                        <p:outputLabel id="codequipo" value="#{solicitudesController.selected.codequipo}"/>
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxtcodusuariosolicita}" for="codusuario_solicita"/>
+                        <p:outputLabel id="codusuario_solicita" value="#{solicitudesController.selected.codusuario_solicita}"/>
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxtcodusuarioasigna}" for="codusuario_asigna"/>
+                        <p:outputLabel id="codusuario_asigna" value="#{solicitudesController.selected.codusuario_asigna}"/>
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxtcodusuariotecnico}" for="codusuario_tecnico"/>
+                        <p:outputLabel id="codusuario_tecnico" value="#{solicitudesController.selected.codusuario_tecnico}" />
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxtfechasolicitud}" for="fechasolicitud"/>
+                        <p:outputLabel id="fechasolicitud" value="#{solicitudesController.selected.fechasolicitud}"/>
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxthorasolicitud}" for="horasolicitud"/>
+                        <p:outputLabel id="horasolicitud" value="#{solicitudesController.selected.horasolicitud}"/>
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxtfechaasignacion}" for="fechaasignacion"/>
+                        <p:outputLabel id="fechaasignacion" value="#{solicitudesController.selected.fechaasignacion}"/>
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxthoraasignacion}" for="horaasignacion"/>
+                        <p:outputLabel id="horaasignacion" value="#{solicitudesController.selected.horaasignacion}"/>
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxtestado}" for="estado"/>
+                        <p:outputLabel id="estado" value="#{solicitudesController.selected.estado}" />
+                        <p:outputLabel value="#{SolicitudLabels.SolicitudTxtdescripcion}" for="descripcion"/>
+                        <p:outputLabel id="descripcion" value="#{solicitudesController.selected.descripcion}" />
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

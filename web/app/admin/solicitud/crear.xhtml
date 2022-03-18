@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                    <p:menuitem value="#{SolicitudLabels.SolicitudTitulo}" url="#"/>
+                    <p:menuitem value="#{SolicitudLabels.SolicitudCrear}" url="#"/>
+                </p:breadCrumb>
+                <p:growl id="idmessage" life="4500" showDetail="true"/>
+                <br/>
+
+                <p:panelGrid columns="3">
+                    <f:facet name="header">
+                        <p:outputLabel value="Servicio de Solicitud para reparacion de Equipos"/>
+                        <br/>
+                        <p:outputLabel value="Formulario Solicitar"/>
+                    </f:facet>
+
+                <p:wizard flowListener="#{userWizard.onFlowProcess}">
+                    <p:tab id="personal" title="Equipo">
+                        <p:panel header="Detalles de equipo">
+                            <p:messages />
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <p:outputLabel value="#{SolicitudLabels.SolicitudTxtcodequipo}" for="codequipo"/>
+                                <p:selectOneMenu id="codequipo" value="#{solicitudesController.selected.codequipo}" converter="equipoConverter" required="true" requiredMessage="#{SolicitudLabels.SolicitudTxtcodequipoRequerido}">
+                                    <f:selectItems value="#{equipoController.loadlist('seleccione')}"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="address" title="Descripcion">
+                        <p:panel header="Detalles de Descripcion">
+                            <p:messages />
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <p:outputLabel value="#{SolicitudLabels.SolicitudTxtdescripcion}" for="descripcion"/>
+                                <p:inputTextarea id="descripcion" value="#{solicitudesController.selected.descripcion}" required="true" requiredMessage="#{SolicitudLabels.SolicitudTxtdescripcionRequerido}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+
+                    <p:tab id="confirm" title="Confirmacion">
+                        <p:panel header="Confirmacion">
+                            <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="#{SolicitudLabels.SolicitudTxtcodequipo}" />
+                                    <h:outputText value="#{solicitudesController.selected.codequipo}" styleClass="outputLabel"/>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="#{SolicitudLabels.SolicitudTxtdescripcion}" />
+                                    <h:outputText value="#{solicitudesController.selected.descripcion}" styleClass="outputLabel"/>
+                                </h:panelGrid>
+
+                            </h:panelGrid>
+                            <p:commandButton id="btngrabarjugador" icon="ui-icon-check" value="crear" action="#{solicitudesController.addSolicitud()}" ajax="false" process="@this"/>
+                        </p:panel>
+                    </p:tab>
+                </p:wizard>
+                     </p:panelGrid>
+            </h:form>
+        </ui:define>          
+    </ui:composition>  
+</html>

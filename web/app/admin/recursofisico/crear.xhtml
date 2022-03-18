@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                    <p:menuitem value="#{RecursofisicoLabels.RecursofisicoTitulo}" url="#"/>
+                    <p:menuitem value="#{RecursofisicoLabels.RecursofisicoCrear}" url="#"/>
+                </p:breadCrumb>
+                <p:growl id="idmessage" life="4500" showDetail="true"/>
+                <br/>
+
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        <p:outputLabel value="Formulario Crear Recursofisico"/>
+                    </f:facet>
+                    <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtNombrerecursofisico}" for="nombrerecurso"/>
+                    <p:inputText id="nombrerecurso" value="#{recursofisicoController.selected.nombrerecurso}" required="true" requiredMessage="#{JugadoresLabels.JugadoresTxtdocumentoRequerido}"/>
+                    <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtNomenclatura}" for="nomenclatura"/>
+                    <p:inputText id="nomenclatura" value="#{recursofisicoController.selected.nomenclatura}" required="true" requiredMessage="#{JugadoresLabels.JugadoresTxtApellidosRequerido}"/>
+                    <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtEdificio}" for="edificio"/>
+                    <p:inputText id="edificio" value="#{recursofisicoController.selected.edificio}" required="true" requiredMessage="#{JugadoresLabels.JugadoresTxtApellidosRequerido}"/>
+
+
+                    <f:facet name="footer">
+                        <p:commandButton id="btngrabarjugador" icon="ui-icon-check" value="crear" action="#{recursofisicoController.addRecursofisico()}" ajax="false"/>
+                    </f:facet>
+
+                </p:panelGrid>
+            </h:form>
+        </ui:define>          
+    </ui:composition>  
+</html>

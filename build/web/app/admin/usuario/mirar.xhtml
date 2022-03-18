@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{UsuarioLabels.UsuarioTitulo}" url="#"/>
+                        <p:menuitem value="#{UsuarioLabels.Usuariodetalles}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{UsuarioLabels.Usuariodetalle}"/>
+                        </f:facet>
+                        <p:outputLabel value="Apellidos" for="doc"/>
+                        <p:outputLabel id="doc" value="#{usuarioController.selected.apellidos}"/>
+                        <p:outputLabel value="Nombres" for="asunto"/>
+                        <p:outputLabel id="asunto" value="#{usuarioController.selected.nombres}"/>
+                        <p:outputLabel value="Documento" for="primapellido"/>
+                        <p:outputLabel id="primapellido" value="#{usuarioController.selected.documento}"/>
+                        <p:outputLabel value="Correo" for="cor"/>
+                        <p:outputLabel id="cor" value="#{usuarioController.selected.correo}"/>
+                        <p:outputLabel value="nombreusuario" for="nomusu"/>
+                        <p:outputLabel id="nomusu" value="#{usuarioController.selected.nombreusuario}"/>                        
+                        <p:outputLabel value="telefono" for="tel"/>
+                        <p:outputLabel id="tel" value="#{usuarioController.selected.telefono}"/>
+
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

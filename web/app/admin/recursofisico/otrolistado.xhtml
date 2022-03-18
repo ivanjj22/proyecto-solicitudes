@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{RecursofisicoLabels.RecursofisicoTitulo}" url="#"/>
+                        <p:menuitem value="#{RecursofisicoLabels.RecursofisicoListar}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+                    <p:dataTable id="tbl" var="registro" value="#{recursofisicoController.consultapersonalizada()}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="10" style="margin-bottom:20px">
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{RecursofisicoLabels.RecursofisicoTxtCodrecursofisico}" />
+                            </f:facet>
+                            <h:outputText value="#{registro[0]}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{RecursofisicoLabels.RecursofisicoTxtNombrerecursofisico}"/>
+                            </f:facet>
+                            <h:outputText value="#{registro[1]}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{RecursofisicoLabels.RecursofisicoTxtNomenclatura}" />
+                            </f:facet>
+                            <h:outputText value="#{registro[2]}" />
+                        </p:column>
+
+
+                        
+                    </p:dataTable>
+
+                    <h3>Exportar Datos</h3>
+                    <h:commandLink>
+                        <img src="../../../resources/img/csv.png" width="32" height="32" alt="csv"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="recursofisico" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <img src="../../../resources/img/xml.png" width="32" height="32" alt="xml"/>
+                        <p:dataExporter type="xml" target="tbl" fileName="recursofisico" pageOnly="true" />
+                    </h:commandLink>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

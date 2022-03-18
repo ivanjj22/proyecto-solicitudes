@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                    <p:menuitem value="#{UsuarioLabels.UsuarioTitulo}" url="#"/>
+                    <p:menuitem value="#{UsuarioLabels.UsuarioCrear}" url="#"/>
+                </p:breadCrumb>
+                <p:growl id="idmessage" life="4500" showDetail="true"/>
+                <br/>
+
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        <p:outputLabel value="Formulario Crear Usuario"/>
+                    </f:facet>
+                    
+                    <p:outputLabel value="#{UsuarioLabels.UsuarioTxtCodrecurso}" for="CodRecurso"/>
+                    <p:selectOneMenu id="CodRecurso" value="#{usuarioController.selected.codrecurso}" converter="recursofisicoConverter" required="true" requiredMessage="#{UsuarioLabels.UsuarioTxtCodrecursoRequerido}">
+                        <f:selectItems value="#{recursofisicoController.loadlist('Recurso')}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel value="#{UsuarioLabels.UsuarioTxtapellidos}" for="doc"/>
+                    <p:inputText id="doc" value="#{usuarioController.selected.apellidos}" required="true" requiredMessage="#{UsuarioLabels.UsuarioTxtapellidosRequerido}"/>
+                    <p:outputLabel value="#{UsuarioLabels.UsuarioTxtnombres}" for="asunto"/>
+                    <p:inputText id="asunto" value="#{usuarioController.selected.nombres}" required="true" requiredMessage="#{UsuarioLabels.UsuarioTxtnombresRequerido}"/>
+                    <p:outputLabel value="#{UsuarioLabels.UsuarioTxttipodocumento}" for="tipdoc"/>
+                    <h:selectOneMenu id="tipdoc" value="#{usuarioController.selected.tipodocumento}" required="true" requiredMessage="#{UsuarioLabels.UsuarioTxttipodocumentoRequerido}">
+                        <f:selectItem itemValue="CC" itemLabel="Cedula"/>
+                        <f:selectItem itemValue="TI" itemLabel="Targeta de identidad"/>
+                        <f:selectItem itemValue="NIT" itemLabel="NIT"/>
+                    </h:selectOneMenu>
+                    <p:outputLabel value="Documento" for="primapellido"/>
+                    <p:inputText id="primapellido" value="#{usuarioController.selected.documento}" required="true" requiredMessage="#{JugadoresLabels.JugadoresTxtApellidosRequerido}"/>
+                    <p:outputLabel value="#{UsuarioLabels.UsuarioTxtgenero}" for="per"/>
+                    <h:selectOneMenu id="per" value="#{usuarioController.selected.genero}" required="true" requiredMessage="#{UsuarioLabels.UsuarioTxtgeneroRequerido}">
+                        <f:selectItem itemValue="1" itemLabel="Masculino"/>
+                        <f:selectItem itemValue="2" itemLabel="Femenino"/>
+                    </h:selectOneMenu>
+                    <p:outputLabel value="#{UsuarioLabels.UsuarioTxtcorreo}" for="cor"/>
+                    <p:inputText id="cor" value="#{usuarioController.selected.correo}" required="true" requiredMessage="#{UsuarioLabels.UsuarioTxtcorreoRequerido}"/>
+                    <p:outputLabel value="#{UsuarioLabels.UsuarioTxttelefono}" for="tel"/>
+                    <p:inputText id="tel" value="#{usuarioController.selected.telefono}" required="true" requiredMessage="#{UsuarioLabels.UsuarioTxttelefonoRequerido}"/>
+                    <p:outputLabel value="#{UsuarioLabels.UsuarioTxtNombreusuario}" for="nomusu"/>
+                    <p:inputText id="nomusu" value="#{usuarioController.selected.nombreusuario}" required="true" requiredMessage="#{UsuarioLabels.UsuarioTxtNombreusuarioRequerido}"/>
+                    <p:outputLabel value="#{UsuarioLabels.UsuarioTxtclave}" for="pass"/>
+                    <p:password id="pass" value="#{usuarioController.selected.clave}" required="true" requiredMessage="#{UsuarioLabels.UsuarioTxtclaveRequerido}" feedback="true" promptLabel="Digite una Clave" weakLabel="Corta" goodLabel="Buena" strongLabel="Larga"/>
+
+
+                    <f:facet name="footer">
+                        <p:commandButton id="btngrabarjugador" icon="ui-icon-check" value="Crear Usuario" action="#{usuarioController.addUsuario()}" ajax="false"/>
+                    </f:facet>
+
+                </p:panelGrid>
+            </h:form>
+        </ui:define>          
+    </ui:composition>  
+</html>

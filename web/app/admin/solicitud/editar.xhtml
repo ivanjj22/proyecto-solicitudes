@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{SolicitudLabels.SolicitudTitulo}" url="#"/>
+                        <p:menuitem value="#{SolicitudLabels.SolicitudEditar}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+
+                    <p:growl id="idmessage" life="4500" showDetail="true"/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{SolicitudLabels.SolicitudFrmEditar}"/>
+                        </f:facet>
+
+                    <p:outputLabel value="#{SolicitudLabels.SolicitudTxtcodequipo}" for="codequipo"/>
+                    <p:selectOneMenu id="codequipo" value="#{solicitudesController.selected.codequipo}" converter="equipoConverter" required="true" requiredMessage="#{SolicitudLabels.SolicitudTxtcodequipoRequerido}">
+                        <f:selectItems value="#{equipoController.loadlist('caja equipo')}"/>
+                    </p:selectOneMenu>
+                    
+                   
+                    <p:outputLabel value="#{SolicitudLabels.SolicitudTxtcodusuariosolicita}" for="codusuario_solicita"/>
+                    <p:selectOneMenu id="codusuario_solicita" value="#{solicitudesController.selected.codusuario_solicita}" converter="usuarioConverter" required="true" requiredMessage="#{SolicitudLabels.SolicitudTxtcodusuariosolicitaRequerido}">
+                        <f:selectItems value="#{usuarioController.loadlist('usuario solicita')}"/>
+                    </p:selectOneMenu>
+                    
+                    
+                    <p:outputLabel value="#{SolicitudLabels.SolicitudTxtcodusuarioasigna}" for="codusuario_asigna"/>
+                    <p:selectOneMenu id="codusuario_asigna" value="#{solicitudesController.selected.codusuario_asigna}" converter="usuarioConverter" required="true" requiredMessage="#{SolicitudLabels.SolicitudTxtcodusuarioasignaRequerido}">
+                        <f:selectItems value="#{usuarioController.loadlist('usuario asigna')}"/>
+                    </p:selectOneMenu>
+                                
+                    <p:outputLabel value="#{SolicitudLabels.SolicitudTxtcodusuariotecnico}" for="codusuario_tecnico"/>
+                    <p:selectOneMenu id="codusuario_tecnico" value="#{solicitudesController.selected.codusuario_tecnico}" converter="usuarioConverter" required="true" requiredMessage="#{SolicitudLabels.SolicitudTxtcodusuariotecnicoRequerido}">
+                        <f:selectItems value="#{usuarioController.loadlist('Tecnico')}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{SolicitudLabels.SolicitudTxtestado}" for="estado"/>
+                    <p:selectOneMenu id="estado" value="#{solicitudesController.selected.estado}">
+                        <f:selectItem itemLabel="Atendido" itemValue="1"/>
+                        <f:selectItem  itemLabel="Pendiente" itemValue="2" />
+                    </p:selectOneMenu>
+                                                    
+                    <p:outputLabel value="#{SolicitudLabels.SolicitudTxtdescripcion}" for="descripcion"/>
+                    <p:inputText id="descripcion" value="#{solicitudesController.selected.descripcion}" required="true" requiredMessage="#{SolicitudLabels.SolicitudTxtdescripcionRequerido}"/>
+
+                 
+
+                        <f:facet name="footer">
+                            <p:commandButton id="btneditar" icon="ui-icon-check" value="#{SolicitudLabels.SolicitudEditar}" action="#{solicitudesController.updateSolicitud()}" ajax="false"/>
+                        </f:facet>
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

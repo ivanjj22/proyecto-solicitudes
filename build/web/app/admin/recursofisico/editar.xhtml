@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{RecursofisicoLabels.RecursofisicoTitulo}" url="#"/>
+                        <p:menuitem value="#{RecursofisicoLabels.RecursofisicoEditar}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+
+                    <p:growl id="idmessage" life="4500" showDetail="true"/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoFrmEditar}"/>
+                        </f:facet>
+
+                        <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtNombrerecursofisico}" for="asunto"/>
+                        <p:inputText id="asunto" value="#{recursofisicoController.selected.nombrerecurso}" required="true" requiredMessage="#{JugadoresLabels.JugadoresTxtdocumentoRequerido}"/>
+                        <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtNomenclatura}" for="primapellido"/>
+                        <p:inputText id="primapellido" value="#{recursofisicoController.selected.nomenclatura}" required="true" requiredMessage="#{JugadoresLabels.JugadoresTxtApellidosRequerido}"/>
+                        <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtEdificio}" for="ed"/>
+                        <p:inputText id="ed" value="#{recursofisicoController.selected.edificio}" required="true" requiredMessage="#{JugadoresLabels.JugadoresTxtApellidosRequerido}"/>
+                        
+                        <f:facet name="footer">
+                            <p:commandButton id="btneditar" icon="ui-icon-check" value="#{RecursofisicoLabels.RecursofisicoEditar}" action="#{recursofisicoController.updateRecursofisico()}" ajax="false"/>
+                        </f:facet>
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

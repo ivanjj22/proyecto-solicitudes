@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>UTS oficina de recursos</title>
+        <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'></link>
+        <link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah|Pacifico' rel='stylesheet' type='text/css'></link>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <div id="header-top" class="header-top">
+                    <div id="width-container" class="width-container">
+                        <div id="header-top-left" class="header-top-left">
+                            <span class="header-top-left">
+                                <a href="../principal.xhtml">Inicio</a>
+                            </span>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div id="header-middle" class="header-middle">
+                    <div class="width-container logo-uts">
+                        <div style="float: left;width: 900px">
+                            <a href="#">
+                                <img src="/web/resources/img/logo.png" width="232" height="97" alt="logo"/>
+                            </a>
+                        </div>
+                        <div style="float: right;width: 250px;">
+                            <h2 style="font-family: 'Indie Flower', cursive; font-size: 12px">Oficina de Recursos Informaticos</h2>
+                            <h2 style="font-family: 'Indie Flower', cursive; font-size: 12px">Bienvenido: <p:outputLabel style="font-family: 'Indie Flower', cursive; font-size: 15px" value="#{login.usuario}"/></h2>
+                            <h:form>
+                                <p:growl id="message" showDetail="true" />
+                                <p:commandButton id="btncerrar" value="Cerrar cesion" action="#{loginController.logout()}" icon="ui-icon-closethick" update="message">
+                                    <p:confirm header="Confirmacion" message="Esta seguro de cerrar cesion?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="bounce" hideEffect="explode">
+                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </h:form>
+                        </div>
+                    </div>
+                    <div style="clear: left"></div>
+                </div>
+
+
+
+
+                <div class="header-bottom">
+                    <div class="width-container">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <ul class="menu-header">
+                                            <li id="peque-menu-header-item">
+                                                <a href="#">Contenido</a>
+                                                <ul>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+        <footer class="text-footer"> 
+            <p>Unidades Tecnológicas de Santander - Calle de los Estudiantes # 9-82 Ciudadela Real de Minas - Bucaramanga - Santander - Colombia</p>
+            <p>Email: contactenos@uts.edu.co | PBX (+57) 7 6917700 - Línea gratuita: 018000 940203 - Fax: (+57) 7 6917691 | notificaciones judiciales: <a href="mailto:juridica@uts.edu.co">
+                    juridica@uts.edu.co</a></p>
+            <p>Horario de Atención: Lunes a viernes de 7:30 a.m. a 11:30 a.m. - de 2:00 p.m. a 6:00 p.m.</p>
+            <p>Copyright © 2013 Unidades Tecnológicas de Santander. Todos los Derechos Reservados.</p>
+            <div>
+                <img src="http://uts.edu.co/portal/images/bg-footer.png"/>
+            </div>
+        </footer>
+    </h:body>
+
+</html>

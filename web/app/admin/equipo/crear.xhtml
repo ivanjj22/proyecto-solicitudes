@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                    <p:menuitem value="#{EquipoLabels.EquipoTitulo}" url="#"/>
+                    <p:menuitem value="#{EquipoLabels.EquipoCrear}" url="#"/>
+                </p:breadCrumb>
+                <p:growl id="idmessage" life="4500" showDetail="true"/>
+                <br/>
+
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        <p:outputLabel value="Formulario Crear Equipo"/>
+                    </f:facet>
+
+                    <p:outputLabel value="#{EquipoLabels.EquipoTxtCodRecurso}" for="CodRecurso"/>
+                    <p:selectOneMenu id="CodRecurso" value="#{equipoController.selected.codrecurso}" converter="recursofisicoConverter" required="true" requiredMessage="#{EquipoLabels.EquipoTxtCodrecursoRequerido}">
+                        <f:selectItems value="#{recursofisicoController.loadlist('caja recurso')}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{EquipoLabels.EquipoTxtCodTipo}" for="tipo"/>
+                    <p:selectOneMenu id="tipo" value="#{equipoController.selected.codtipo}" converter="tipoConverter" required="true" requiredMessage="#{EquipoLabels.EquipoTxtCodtipoRequerido}">
+                        <f:selectItems value="#{tipoController.loadlist('seleccione')}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{EquipoLabels.EquipoTxtNombreequipo}" for="nom"/>
+                    <p:inputText id="nom" value="#{equipoController.selected.nombre}" required="true" requiredMessage="#{EquipoLabels.EquipoTxtnombresRequerido}"/>                 
+                    <p:outputLabel value="#{EquipoLabels.EquipoTxtMarca}" for="marca"/>
+                    <p:inputText id="marca" value="#{equipoController.selected.marca}" required="true" requiredMessage="#{EquipoLabels.EquipoTxtMarcaRequerido}"/>                    
+                    <p:outputLabel value="#{EquipoLabels.EquipoTxtSerial}" for="serial"/>
+                    <p:inputText id="serial" value="#{equipoController.selected.serial}" required="true" requiredMessage="#{EquipoLabels.EquipoTxtSerialRequerido}"/>
+                    <p:outputLabel value="#{EquipoLabels.EquipoTxtNuminventario}" for="num"/>
+                    <p:inputText id="num" value="#{equipoController.selected.numinventario}" required="true" requiredMessage="#{EquipoLabels.EquipoTxtNumInventarioRequerido}"/>
+
+                    <p:outputLabel value="#{EquipoLabels.EquipoTxtEstado}" for="estado"/>
+                    <p:selectOneMenu id="estado" value="#{equipoController.selected.estado}">
+                        <f:selectItem itemLabel="Activo" itemValue="1"/>
+                        <f:selectItem  itemLabel="Inactivo" itemValue="2" />
+                    </p:selectOneMenu>
+
+
+                    <f:facet name="footer">
+                        <p:commandButton id="btngrabarjugador" icon="ui-icon-check" value="#{EquipoLabels.EquipoGrabar}" action="#{equipoController.addEquipo()}" ajax="false"/>
+                    </f:facet>
+
+                </p:panelGrid>
+            </h:form>
+        </ui:define>          
+    </ui:composition>  
+</html>

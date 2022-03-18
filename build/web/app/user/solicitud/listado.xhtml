@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{SolicitudLabels.SolicitudTitulo}" url="#"/>
+                        <p:menuitem value="#{SolicitudLabels.SolicitudListar}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+                    <p:dataTable id="tbl" var="registro" value="#{solicitudesController.mirelos()}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="11" style="margin-bottom:20px">
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxtCodsolicitud}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.codsolicitud}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxtcodequipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{registro.codequipo}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxtcodusuariosolicita}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.codusuario_solicita}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxtcodusuarioasigna}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.codusuario_asigna}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxtcodusuariotecnico}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.codusuario_tecnico}" />
+                        </p:column>
+                    
+                    
+                    <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxtfechasolicitud}"/>
+                            </f:facet>
+                        <h:outputText value="#{registro.fechasolicitud}" />
+                        </p:column>
+                    
+                    <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxthorasolicitud}"/>
+                            </f:facet>
+                        <h:outputText value="#{registro.horasolicitud}" />
+                        </p:column>
+                    
+                    <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxtfechaasignacion}"/>
+                            </f:facet>
+                        <h:outputText value="#{registro.fechaasignacion}" />
+                        </p:column>
+                    
+                    <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxthoraasignacion}"/>
+                            </f:facet>
+                        <h:outputText value="#{registro.horaasignacion}" />
+                        </p:column>
+                    
+                    <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxtestado}"/>
+                            </f:facet>
+                        <h:outputText value="#{registro.estado}" />
+                        </p:column>
+                    
+                    <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{SolicitudLabels.SolicitudTxtdescripcion}"/>
+                            </f:facet>
+                        <h:outputText value="#{registro.descripcion}" />
+                        </p:column>
+                        
+                    </p:dataTable>
+
+                    <h3>Exportar Datos</h3>
+                    <h:commandLink>
+                        <img src="../../../resources/img/csv.png" width="32" height="32" alt="csv"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="solicitudes" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <img src="../../../resources/img/xml.png" width="32" height="32" alt="xml"/>
+                        <p:dataExporter type="xml" target="tbl" fileName="solicitudes" pageOnly="true" />
+                    </h:commandLink>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

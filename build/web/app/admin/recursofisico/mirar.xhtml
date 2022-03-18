@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{RecursofisicoLabels.RecursofisicoTitulo}" url="#"/>
+                        <p:menuitem value="#{RecursofisicoLabels.Recursofisicodetalles}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{RecursofisicoLabels.Recursofisicodetalle}"/>
+                        </f:facet>
+                        <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtCodrecursofisico}" for="codubicacion"/>
+                        <p:outputLabel id="codubicacion" value="#{recursofisicoController.selected.codrecurso}"/>
+                        <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtNombrerecursofisico}" for="doc"/>
+                        <p:outputLabel id="doc" value="#{recursofisicoController.selected.nombrerecurso}"/>
+                        <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtNomenclatura}" for="fecha"/>
+                        <p:outputLabel id="fecha" value="#{recursofisicoController.selected.nomenclatura}"/>
+                        <p:outputLabel value="#{RecursofisicoLabels.RecursofisicoTxtEdificio}" for="ed"/>
+                        <p:outputLabel id="ed" value="#{recursofisicoController.selected.edificio}"/>
+
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{ReparacionLabels.ReparacionTitulo}" url="#"/>
+                        <p:menuitem value="#{ReparacionLabels.ReparacionAdministrar}" url="#"/>
+                    </p:breadCrumb>
+                    <p:growl id="idmessage" life="4500" showDetail="true"/>
+                    <br/>
+                    <p:dataTable value="#{reparacionController.mirelos()}" var="registro" >
+                        <p:column style="width: 14%">
+                            <f:facet name="header">#{ReparacionLabels.ReparacionTxtCodreparacion}</f:facet>
+                                #{registro.codreparacion}
+                        </p:column>
+                        <p:column style="width: 14%">
+                            <f:facet name="header">#{ReparacionLabels.ReparacionTxtCodSolicitud}</f:facet>
+                                #{registro.codsolicitud}
+                        </p:column>
+                        <p:column style="width: 14%">
+                            <f:facet name="header">#{ReparacionLabels.ReparacionTxtfecha}</f:facet>
+                                #{registro.fecha}
+                        </p:column>
+                        <p:column style="width: 14%">
+                            <f:facet name="header">#{ReparacionLabels.ReparacionTxthora}</f:facet>
+                                #{registro.hora}
+                        </p:column>
+                        <p:column style="width: 14%">
+                            <f:facet name="header">#{ReparacionLabels.ReparacionTxtSolucion}</f:facet>
+                                #{registro.solucion}
+                        </p:column>
+                        <p:column style="width: 14%">
+                            <f:facet name="header">#{ReparacionLabels.ReparacionTxtObservaciones}</f:facet>
+                                #{registro.observaciones}
+                        </p:column>
+
+
+                        <p:column style="width: 14%">
+                            <f:facet name="header">#{SystemLabels.Herramientas}</f:facet>
+                            <p:commandButton action="#{reparacionController.deteleReparacion(registro)}" title="#{ReparacionLabels.ReparacionMsgBorrarExito}" icon="ui-icon-trash" ajax="false"/>
+                            <p:commandButton action="#{reparacionController.viewReparacion(registro,'mirar')}" title="#{ReparacionsLabels.Reparacionsdetalle}" icon="ui-icon-circle-zoomin" ajax="false"/>
+                            <p:commandButton action="#{reparacionController.viewReparacion(registro,'editar')}" title="#{ReparacionsLabels.ReparacionsEditar}" icon="ui-icon-pencil" ajax="false"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

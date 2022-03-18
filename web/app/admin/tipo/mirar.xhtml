@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{TipoLabels.TipoTitulo}" url="#"/>
+                        <p:menuitem value="#{TipoLabels.Tipodetalles}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{TipoLabels.Tipodetalle}"/>
+                        </f:facet>
+                        <p:outputLabel value="#{TipoLabels.TipoTxtCodtipo}" for="codtipo"/>
+                        <p:outputLabel id="codtipo" value="#{tipoController.selected.codtipo}"/>
+                        <p:outputLabel value="#{TipoLabels.TipoTxtNombretipo}" for="nombre"/>
+                        <p:outputLabel id="nombre" value="#{tipoController.selected.nombretipo}"/>
+
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

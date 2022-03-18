@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{RecursofisicoLabels.RecursofisicoTitulo}" url="#"/>
+                        <p:menuitem value="#{RecursofisicoLabels.RecursofisicoAdministrar}" url="#"/>
+                    </p:breadCrumb>
+                    <p:growl id="idmessage" life="4500" showDetail="true"/>
+                    <br/>
+                    <p:dataTable value="#{recursofisicoController.mirelos()}" var="registro" >
+                        <p:column style="width: 20%">
+                            <f:facet name="header">#{RecursofisicoLabels.RecursofisicoTxtCodrecursofisico}</f:facet>
+                            #{registro.codrecurso}
+                        </p:column>
+                        <p:column style="width: 20%">
+                            <f:facet name="header">#{RecursofisicoLabels.RecursofisicoTxtNombrerecursofisico}</f:facet>
+                            #{registro.nombrerecurso}
+                        </p:column>
+                        <p:column style="width: 20%">
+                            <f:facet name="header">#{RecursofisicoLabels.RecursofisicoTxtNomenclatura}</f:facet>
+                            #{registro.nomenclatura}
+                        </p:column>
+                        <p:column style="width: 20%">
+                            <f:facet name="header">#{RecursofisicoLabels.RecursofisicoTxtEdificio}</f:facet>
+                            #{registro.edificio}
+                        </p:column>
+                        
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{SystemLabels.Herramientas}</f:facet>
+                            <p:commandButton action="#{recursofisicoController.deteleRecursofisico(registro)}" title="#{RecursofisicoLabels.RecursofisicoMsgBorrarExito}" icon="ui-icon-trash" ajax="false"/>
+                            <p:commandButton action="#{recursofisicoController.viewRecursofisico(registro,'mirar')}" title="#{UsuariosLabels.Usuariosdetalle}" icon="ui-icon-circle-zoomin" ajax="false"/>
+                            <p:commandButton action="#{recursofisicoController.viewRecursofisico(registro,'editar')}" title="#{UsuariosLabels.UsuariosEditar}" icon="ui-icon-pencil" ajax="false"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

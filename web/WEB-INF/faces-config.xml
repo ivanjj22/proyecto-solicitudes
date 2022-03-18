@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    
+    <application>
+        <resource-bundle>
+            <base-name>/utilities/SolicitudLabels
+            </base-name>
+            <var>SolicitudLabels</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/utilities/UsuarioLabels
+            </base-name>
+            <var>UsuarioLabels</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/utilities/RecursofisicoLabels
+            </base-name>
+            <var>RecursofisicoLabels</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/utilities/SystemLabels
+            </base-name>
+            <var>SystemLabels</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/utilities/EquipoLabels
+            </base-name>
+            <var>EquipoLabels</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/utilities/TipoLabels
+            </base-name>
+            <var>TipoLabels</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/utilities/ReparacionLabels
+            </base-name>
+            <var>ReparacionLabels</var>
+        </resource-bundle>
+    </application>
+</faces-config>

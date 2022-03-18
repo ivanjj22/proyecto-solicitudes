@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{EquipoLabels.EquipoTitulo}" url="#"/>
+                        <p:menuitem value="#{EquipoLabels.EquipoAdministrar}" url="#"/>
+                    </p:breadCrumb>
+                    <p:growl id="idmessage" life="4500" showDetail="true"/>
+                    <br/>
+                    <p:dataTable value="#{equipoController.mirelos()}" var="registro" >
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{EquipoLabels.EquipoTxtCodequipo}</f:facet>
+                            #{registro.codequipo}
+                        </p:column>
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{EquipoLabels.EquipoTxtCodRecurso}</f:facet>
+                            #{registro.codrecurso}
+                        </p:column>
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{EquipoLabels.EquipoTxtCodTipo}</f:facet>
+                            #{registro.codtipo}
+                        </p:column>
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{EquipoLabels.EquipoTxtNombreequipo}</f:facet>
+                            #{registro.nombre}
+                        </p:column>
+                        <p:column style="width: 5%">
+                            <f:facet name="header">#{EquipoLabels.EquipoTxtMarca}</f:facet>
+                            #{registro.marca}
+                        </p:column>
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{EquipoLabels.EquipoTxtSerial}</f:facet>
+                            #{registro.serial}
+                        </p:column>
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{EquipoLabels.EquipoTxtNuminventario}</f:facet>
+                            #{registro.numinventario}
+                        </p:column>
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{EquipoLabels.EquipoTxtEstado}</f:facet>
+                            #{registro.estado}
+                        </p:column>
+                                                
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{SystemLabels.Herramientas}</f:facet>
+                            <p:commandButton action="#{equipoController.deteleEquipo(registro)}" title="#{EquipoLabels.EquipoMsgBorrarExito}" icon="ui-icon-trash" ajax="false"/>
+                            <p:commandButton action="#{equipoController.viewEquipo(registro,'mirar')}" title="#{EquiposLabels.Equiposdetalle}" icon="ui-icon-circle-zoomin" ajax="false"/>
+                            <p:commandButton action="#{equipoController.viewEquipo(registro,'editar')}" title="#{EquiposLabels.EquiposEditar}" icon="ui-icon-pencil" ajax="false"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

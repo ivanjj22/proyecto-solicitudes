@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{EquipoLabels.EquipoTitulo}" url="#"/>
+                        <p:menuitem value="#{EquipoLabels.EquipoListar}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+                    <p:dataTable id="tbl" var="registro" value="#{equipoController.mirelos()}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="10" style="margin-bottom:20px">
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{EquipoLabels.EquipoTxtCodequipo}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.codequipo}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{EquipoLabels.EquipoTxtCodRecurso}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.codrecurso}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{EquipoLabels.EquipoTxtCodTipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{registro.codtipo}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{EquipoLabels.EquipoTxtnombre}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.nombre}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{EquipoLabels.EquipoTxtMarca}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.marca}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{EquipoLabels.EquipoTxtSerial}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.serial}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{EquipoLabels.EquipoTxtNuminventario}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.numinventario}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{EquipoLabels.EquipoTxtEstado}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.estado}" />
+                        </p:column>                        
+                    </p:dataTable>
+
+                    <h3>Exportar Datos</h3>
+                    <h:commandLink>
+                        <img src="../../../resources/img/csv.png" width="32" height="32" alt="csv"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="equipos" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <img src="../../../resources/img/xml.png" width="32" height="32" alt="xml"/>
+                        <p:dataExporter type="xml" target="tbl" fileName="equipos" pageOnly="true" />
+                    </h:commandLink>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

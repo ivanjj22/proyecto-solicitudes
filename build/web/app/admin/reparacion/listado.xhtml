@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{ReparacionLabels.ReparacionTitulo}" url="#"/>
+                        <p:menuitem value="#{ReparacionLabels.ReparacionListar}" url="#"/>
+                    </p:breadCrumb>
+                    <br/>
+                    <p:dataTable id="tbl" var="registro" value="#{reparacionController.mirelos()}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="10" style="margin-bottom:20px">
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{ReparacionLabels.ReparacionTxtCodreparacion}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.codreparacion}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{ReparacionLabels.ReparacionTxtCodSolicitud}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.codsolicitud}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{ReparacionLabels.ReparacionTxtfecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{registro.fecha}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{ReparacionLabels.ReparacionTxthora}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.hora}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{ReparacionLabels.ReparacionTxtSolucion}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.solucion}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{ReparacionLabels.ReparacionTxtObservaciones}" />
+                            </f:facet>
+                            <h:outputText value="#{registro.observaciones}" />
+                        </p:column>
+                             
+                    </p:dataTable>
+
+                    <h3>Exportar Datos</h3>
+                    <h:commandLink>
+                        <img src="../../../resources/img/csv.png" width="32" height="32" alt="csv"/>
+                        <p:dataExporter type="csv" target="tbl" fileName="reparaciones" pageOnly="true" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <img src="../../../resources/img/xml.png" width="32" height="32" alt="xml"/>
+                        <p:dataExporter type="xml" target="tbl" fileName="reparaciones" pageOnly="true" />
+                    </h:commandLink>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>

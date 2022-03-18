@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/plantilla.xhtml">
+        <ui:define name="content">
+            <p:panel>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{SystemLabels.Inicio}" url="../principal.xhtml"/>
+                        <p:menuitem value="#{SolicitudLabels.SolicitudTitulo}" url="#"/>
+                        <p:menuitem value="#{SolicitudLabels.SolicitudAdministrar}" url="#"/>
+                    </p:breadCrumb>
+                    <p:growl id="idmessage" life="4500" showDetail="true"/>
+                    <br/>
+                    <p:dataTable value="#{solicitudesController.mirelos()}" var="registro" >
+                        <p:column style="width: 8%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxtCodsolicitud}</f:facet>
+                            #{registro.codsolicitud}
+                        </p:column>
+                        <p:column style="width: 8%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxtcodequipo}</f:facet>
+                            #{registro.codequipo}
+                        </p:column>
+                        <p:column style="width: 7%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxtcodusuariosolicita}</f:facet>
+                            #{registro.codusuario_solicita}
+                        </p:column>
+                        <p:column style="width: 8%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxtcodusuarioasigna}</f:facet>
+                            #{registro.codusuario_asigna}
+                        </p:column>
+                        <p:column style="width: 8%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxtcodusuariotecnico}</f:facet>
+                            #{registro.codusuario_tecnico}
+                        </p:column>
+                        
+                        <p:column style="width: 8%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxtfechasolicitud}</f:facet>
+                            #{registro.fechasolicitud}
+                        </p:column>
+                        <p:column style="width: 8%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxthorasolicitud}</f:facet>
+                            #{registro.horasolicitud}
+                        </p:column>
+                        <p:column style="width: 8%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxtfechaasignacion}</f:facet>
+                            #{registro.fechaasignacion}
+                        </p:column>
+                        <p:column style="width: 7%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxthoraasignacion}</f:facet>
+                            #{registro.horaasignacion}
+                        </p:column>
+                        <p:column style="width: 8%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxtestado}</f:facet>
+                            #{registro.estado}
+                        </p:column>
+                        <p:column style="width: 7%">
+                            <f:facet name="header">#{SolicitudLabels.SolicitudTxtdescripcion}</f:facet>
+                            #{registro.descripcion}
+                        </p:column>
+                        
+                        <p:column style="width: 10%">
+                            <f:facet name="header">#{SystemLabels.Herramientas}</f:facet>
+                            <p:commandButton action="#{solicitudesController.deteleSolicitud(registro)}" title="#{SolicitudLabels.SolicitudMsgBorrarExito}" icon="ui-icon-trash" ajax="false"/>
+                            <p:commandButton action="#{solicitudesController.viewSolicitud(registro,'mirar')}" title="#{UsuariosLabels.Usuariosdetalle}" icon="ui-icon-circle-zoomin" ajax="false"/>
+                            <p:commandButton action="#{solicitudesController.viewSolicitud(registro,'editar')}" title="#{UsuariosLabels.UsuariosEditar}" icon="ui-icon-pencil" ajax="false"/>
+                        </p:column>
+
+                        
+                    </p:dataTable>
+                </h:form>
+            </p:panel>
+        </ui:define>          
+    </ui:composition>
+</html>
